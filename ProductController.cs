@@ -29,18 +29,18 @@ namespace GestionDeProductos
 
         public static bool update(Product product)
         {
-            bool saved = false;
+            bool updated = false;
 
             products.ForEach(p =>
             {
                 if (p.Id == product.Id)
                 {
                     p = product;
-                    saved = true;
+                    updated = true;
                 }
             });
 
-            return saved;
+            return updated;
         }
 
         public static bool delete(Product product)
