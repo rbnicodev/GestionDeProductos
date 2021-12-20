@@ -14,15 +14,6 @@ namespace GestionDeProductos
     {
         public MainView()
         {
-            Product product = new Product();
-            product.Name = "Hola";
-            product.Quantity = "234";
-            product.Description = "lkjadsfljkñadsfljkñ";
-            product.Id = "234";
-            product.Price = "2342€";
-            product.TypeProduct = Product.Type.PLACA_BASE;
-
-            ProductController.save(product);
             InitializeComponent();
             
         }
@@ -40,7 +31,7 @@ namespace GestionDeProductos
         {
             if (sender == Nuevo)
             {
-                NewProduct ventana = new NewProduct();
+                NewProduct ventana = new NewProduct(this);
                 ventana.ShowDialog();
 
             }else if (sender == Editar)

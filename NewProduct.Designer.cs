@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.IDBox = new System.Windows.Forms.TextBox();
+            this.IDBOX = new System.Windows.Forms.TextBox();
             this.NombreBOX = new System.Windows.Forms.TextBox();
             this.CantidadBOX = new System.Windows.Forms.TextBox();
             this.PrecioBOX = new System.Windows.Forms.TextBox();
@@ -45,17 +45,18 @@
             this.typeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.typeBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.TipoBOX = new System.Windows.Forms.ComboBox();
+            this.Cancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.typeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
-            // IDBox
+            // IDBOX
             // 
-            this.IDBox.Location = new System.Drawing.Point(12, 91);
-            this.IDBox.Name = "IDBox";
-            this.IDBox.Size = new System.Drawing.Size(380, 22);
-            this.IDBox.TabIndex = 0;
+            this.IDBOX.Location = new System.Drawing.Point(12, 91);
+            this.IDBOX.Name = "IDBOX";
+            this.IDBOX.Size = new System.Drawing.Size(380, 22);
+            this.IDBOX.TabIndex = 0;
             // 
             // NombreBOX
             // 
@@ -87,12 +88,13 @@
             // 
             // GuardarBT
             // 
-            this.GuardarBT.Location = new System.Drawing.Point(164, 660);
+            this.GuardarBT.Location = new System.Drawing.Point(35, 655);
             this.GuardarBT.Name = "GuardarBT";
-            this.GuardarBT.Size = new System.Drawing.Size(75, 23);
+            this.GuardarBT.Size = new System.Drawing.Size(100, 25);
             this.GuardarBT.TabIndex = 6;
             this.GuardarBT.Text = "Guardar";
             this.GuardarBT.UseVisualStyleBackColor = true;
+            this.GuardarBT.Click += new System.EventHandler(this.GuardarBT_Click);
             // 
             // IDLabel
             // 
@@ -168,11 +170,23 @@
             this.TipoBOX.Size = new System.Drawing.Size(377, 24);
             this.TipoBOX.TabIndex = 13;
             // 
+            // Cancelar
+            // 
+            this.Cancelar.Location = new System.Drawing.Point(272, 655);
+            this.Cancelar.Name = "Cancelar";
+            this.Cancelar.Size = new System.Drawing.Size(100, 25);
+            this.Cancelar.TabIndex = 14;
+            this.Cancelar.Text = "Cancelar";
+            this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.Click += new System.EventHandler(this.button1_Click);
+            // 
             // NewProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 705);
+            this.ControlBox = false;
+            this.Controls.Add(this.Cancelar);
             this.Controls.Add(this.TipoBOX);
             this.Controls.Add(this.TipoLable);
             this.Controls.Add(this.DescripLabel);
@@ -185,8 +199,14 @@
             this.Controls.Add(this.PrecioBOX);
             this.Controls.Add(this.CantidadBOX);
             this.Controls.Add(this.NombreBOX);
-            this.Controls.Add(this.IDBox);
+            this.Controls.Add(this.IDBOX);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(422, 752);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(422, 752);
             this.Name = "NewProduct";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Producto";
             ((System.ComponentModel.ISupportInitialize)(this.typeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeBindingSource1)).EndInit();
@@ -198,7 +218,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox IDBox;
+        private System.Windows.Forms.TextBox IDBOX;
         private System.Windows.Forms.TextBox NombreBOX;
         private System.Windows.Forms.TextBox CantidadBOX;
         private System.Windows.Forms.TextBox PrecioBOX;
@@ -214,5 +234,6 @@
         private System.Windows.Forms.BindingSource typeBindingSource1;
         private System.Windows.Forms.BindingSource typeBindingSource2;
         private System.Windows.Forms.ComboBox TipoBOX;
+        private System.Windows.Forms.Button Cancelar;
     }
 }
