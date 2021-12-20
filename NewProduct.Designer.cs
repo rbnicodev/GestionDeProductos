@@ -88,6 +88,7 @@
             // 
             // GuardarBT
             // 
+            this.GuardarBT.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.GuardarBT.Location = new System.Drawing.Point(35, 655);
             this.GuardarBT.Name = "GuardarBT";
             this.GuardarBT.Size = new System.Drawing.Size(100, 25);
@@ -172,13 +173,14 @@
             // 
             // Cancelar
             // 
+            this.Cancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Cancelar.Location = new System.Drawing.Point(272, 655);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(100, 25);
             this.Cancelar.TabIndex = 14;
             this.Cancelar.Text = "Cancelar";
             this.Cancelar.UseVisualStyleBackColor = true;
-            this.Cancelar.Click += new System.EventHandler(this.button1_Click);
+            this.Cancelar.Click += new System.EventHandler(this.cancel_Click);
             // 
             // NewProduct
             // 
