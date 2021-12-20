@@ -1,0 +1,12 @@
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\bin\Debug\GestionDeProductos.exe.config
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\bin\Debug\GestionDeProductos.exe
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\bin\Debug\GestionDeProductos.pdb
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.csproj.AssemblyReference.cache
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.csproj.SuggestedBindingRedirects.cache
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.MainView.resources
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.Properties.Resources.resources
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.csproj.GenerateResource.cache
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.csproj.CoreCompileInputs.cache
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.exe
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.pdb
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.NewProduct.resources
