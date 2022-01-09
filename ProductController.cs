@@ -10,7 +10,7 @@ namespace GestionDeProductos
     {
         private static List<Product> Products = new List<Product>();
         private static int index = 0;
-        public const int Columns = 6;
+        public const int COLUMNS = 6;
         public static int Count = 0; 
 
 
@@ -25,9 +25,13 @@ namespace GestionDeProductos
             {
                 Products.Add(product);
                 saved = true;
+                Count++;
+
+            } else
+            {
+                update(product);
             }
 
-            Count++;
             return saved;
         }
 
@@ -35,14 +39,14 @@ namespace GestionDeProductos
         {
             bool updated = false;
 
-            Products.ForEach(p =>
+            for(int i = 0; i < Products.Count; i++)
             {
-                if (p.Id == product.Id)
+                if(Products[i].Id == product.Id)
                 {
-                    p = product;
+                    Products[i] = product;
                     updated = true;
                 }
-            });
+            }
 
             return updated;
         }
@@ -50,15 +54,22 @@ namespace GestionDeProductos
         public static bool delete(String id)
         {
             bool deleted = false;
+            List<Product> productsDeleted = new List<Product>();
 
-            Products.ForEach(p =>
+            for (int i = 0; i < Products.Count; i++)
             {
-                if (p.Id == id)
+                if(Products[i].Id != id)
                 {
-                    Products.Remove(p);
-                    deleted = true;
+                    productsDeleted.Add(Products[i]);
                 }
-            });
+            }
+
+            if(Products.Count>productsDeleted.Count)
+            {
+                Count--;
+            }
+
+            Products = productsDeleted;
 
             return deleted;
         }
@@ -89,28 +100,31 @@ namespace GestionDeProductos
         }
 
         public static Product next()
-        { 
-            return Products[index];
+        {
+            Product producto = Products[index];
             index++;
+            return producto;
         }
 
         public static Product last()
         {
             index = Products.Count - 1;
-
             return Products[index];
         }
 
         public static Product first()
         {
+            Product producto = null;
             index = 0;
-
-            return Products[index];
+            if(Products.Count > 0)
+            { producto = Products[index]; }
+            return producto;
+            
         }
 
         public static String[] loadString(String id)
         {
-            String[] result = new string[Columns];
+            String[] result = new string[COLUMNS];
 
             result[0] = load(id).Id;
             result[1] = load(id).Name;
@@ -124,7 +138,7 @@ namespace GestionDeProductos
 
         public static String[,] loadStrings()
         {
-            String[,] result = new string[Products.Count, Columns];
+            String[,] result = new string[Products.Count, COLUMNS];
             int i = 0;
 
             foreach (Product product in Products)
@@ -142,7 +156,7 @@ namespace GestionDeProductos
 
         public static String[] nameColumns()
         {
-            String[] result = new string[Columns];
+            String[] result = new string[COLUMNS];
             result[0] = "Id";
             result[1] = "Nombre";
             result[2] = "Cantidad";

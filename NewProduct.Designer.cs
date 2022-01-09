@@ -45,7 +45,7 @@
             this.typeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.typeBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.TipoBOX = new System.Windows.Forms.ComboBox();
-            this.Cancelar = new System.Windows.Forms.Button();
+            this.CancelarBT = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.typeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeBindingSource2)).BeginInit();
@@ -53,101 +53,112 @@
             // 
             // IDBOX
             // 
-            this.IDBOX.Location = new System.Drawing.Point(12, 91);
+            this.IDBOX.Location = new System.Drawing.Point(9, 74);
+            this.IDBOX.Margin = new System.Windows.Forms.Padding(2);
             this.IDBOX.Name = "IDBOX";
-            this.IDBOX.Size = new System.Drawing.Size(380, 22);
+            this.IDBOX.Size = new System.Drawing.Size(286, 20);
             this.IDBOX.TabIndex = 0;
             // 
             // NombreBOX
             // 
-            this.NombreBOX.Location = new System.Drawing.Point(12, 184);
+            this.NombreBOX.Location = new System.Drawing.Point(9, 150);
+            this.NombreBOX.Margin = new System.Windows.Forms.Padding(2);
             this.NombreBOX.Name = "NombreBOX";
-            this.NombreBOX.Size = new System.Drawing.Size(380, 22);
+            this.NombreBOX.Size = new System.Drawing.Size(286, 20);
             this.NombreBOX.TabIndex = 1;
             // 
             // CantidadBOX
             // 
-            this.CantidadBOX.Location = new System.Drawing.Point(12, 285);
+            this.CantidadBOX.Location = new System.Drawing.Point(9, 232);
+            this.CantidadBOX.Margin = new System.Windows.Forms.Padding(2);
             this.CantidadBOX.Name = "CantidadBOX";
-            this.CantidadBOX.Size = new System.Drawing.Size(380, 22);
+            this.CantidadBOX.Size = new System.Drawing.Size(286, 20);
             this.CantidadBOX.TabIndex = 2;
             // 
             // PrecioBOX
             // 
-            this.PrecioBOX.Location = new System.Drawing.Point(12, 389);
+            this.PrecioBOX.Location = new System.Drawing.Point(9, 316);
+            this.PrecioBOX.Margin = new System.Windows.Forms.Padding(2);
             this.PrecioBOX.Name = "PrecioBOX";
-            this.PrecioBOX.Size = new System.Drawing.Size(380, 22);
+            this.PrecioBOX.Size = new System.Drawing.Size(286, 20);
             this.PrecioBOX.TabIndex = 3;
             // 
             // DescripBOX
             // 
-            this.DescripBOX.Location = new System.Drawing.Point(12, 491);
+            this.DescripBOX.Location = new System.Drawing.Point(9, 399);
+            this.DescripBOX.Margin = new System.Windows.Forms.Padding(2);
             this.DescripBOX.Name = "DescripBOX";
-            this.DescripBOX.Size = new System.Drawing.Size(380, 22);
+            this.DescripBOX.Size = new System.Drawing.Size(286, 20);
             this.DescripBOX.TabIndex = 4;
             // 
             // GuardarBT
             // 
-            this.GuardarBT.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.GuardarBT.Location = new System.Drawing.Point(35, 655);
+            this.GuardarBT.Location = new System.Drawing.Point(26, 532);
+            this.GuardarBT.Margin = new System.Windows.Forms.Padding(2);
             this.GuardarBT.Name = "GuardarBT";
-            this.GuardarBT.Size = new System.Drawing.Size(100, 25);
+            this.GuardarBT.Size = new System.Drawing.Size(75, 20);
             this.GuardarBT.TabIndex = 6;
             this.GuardarBT.Text = "Guardar";
             this.GuardarBT.UseVisualStyleBackColor = true;
-            this.GuardarBT.Click += new System.EventHandler(this.GuardarBT_Click);
+            this.GuardarBT.Click += new System.EventHandler(this.Click);
             // 
             // IDLabel
             // 
             this.IDLabel.AutoSize = true;
-            this.IDLabel.Location = new System.Drawing.Point(9, 53);
+            this.IDLabel.Location = new System.Drawing.Point(7, 43);
+            this.IDLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.IDLabel.Name = "IDLabel";
-            this.IDLabel.Size = new System.Drawing.Size(20, 16);
+            this.IDLabel.Size = new System.Drawing.Size(18, 13);
             this.IDLabel.TabIndex = 7;
             this.IDLabel.Text = "ID";
             // 
             // NombreLabel
             // 
             this.NombreLabel.AutoSize = true;
-            this.NombreLabel.Location = new System.Drawing.Point(9, 150);
+            this.NombreLabel.Location = new System.Drawing.Point(7, 122);
+            this.NombreLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NombreLabel.Name = "NombreLabel";
-            this.NombreLabel.Size = new System.Drawing.Size(56, 16);
+            this.NombreLabel.Size = new System.Drawing.Size(44, 13);
             this.NombreLabel.TabIndex = 8;
             this.NombreLabel.Text = "Nombre";
             // 
             // CantidadLabel
             // 
             this.CantidadLabel.AutoSize = true;
-            this.CantidadLabel.Location = new System.Drawing.Point(9, 245);
+            this.CantidadLabel.Location = new System.Drawing.Point(7, 199);
+            this.CantidadLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CantidadLabel.Name = "CantidadLabel";
-            this.CantidadLabel.Size = new System.Drawing.Size(61, 16);
+            this.CantidadLabel.Size = new System.Drawing.Size(49, 13);
             this.CantidadLabel.TabIndex = 9;
             this.CantidadLabel.Text = "Cantidad";
             // 
             // PrecioLabel
             // 
             this.PrecioLabel.AutoSize = true;
-            this.PrecioLabel.Location = new System.Drawing.Point(12, 353);
+            this.PrecioLabel.Location = new System.Drawing.Point(9, 287);
+            this.PrecioLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PrecioLabel.Name = "PrecioLabel";
-            this.PrecioLabel.Size = new System.Drawing.Size(46, 16);
+            this.PrecioLabel.Size = new System.Drawing.Size(37, 13);
             this.PrecioLabel.TabIndex = 10;
             this.PrecioLabel.Text = "Precio";
             // 
             // DescripLabel
             // 
             this.DescripLabel.AutoSize = true;
-            this.DescripLabel.Location = new System.Drawing.Point(12, 453);
+            this.DescripLabel.Location = new System.Drawing.Point(9, 368);
+            this.DescripLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DescripLabel.Name = "DescripLabel";
-            this.DescripLabel.Size = new System.Drawing.Size(79, 16);
+            this.DescripLabel.Size = new System.Drawing.Size(63, 13);
             this.DescripLabel.TabIndex = 11;
             this.DescripLabel.Text = "Descripción";
             // 
             // TipoLable
             // 
             this.TipoLable.AutoSize = true;
-            this.TipoLable.Location = new System.Drawing.Point(12, 545);
+            this.TipoLable.Location = new System.Drawing.Point(9, 443);
+            this.TipoLable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TipoLable.Name = "TipoLable";
-            this.TipoLable.Size = new System.Drawing.Size(35, 16);
+            this.TipoLable.Size = new System.Drawing.Size(28, 13);
             this.TipoLable.TabIndex = 12;
             this.TipoLable.Text = "Tipo";
             // 
@@ -165,30 +176,32 @@
             // 
             // TipoBOX
             // 
+            this.TipoBOX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TipoBOX.FormattingEnabled = true;
-            this.TipoBOX.Location = new System.Drawing.Point(15, 578);
+            this.TipoBOX.Location = new System.Drawing.Point(11, 470);
+            this.TipoBOX.Margin = new System.Windows.Forms.Padding(2);
             this.TipoBOX.Name = "TipoBOX";
-            this.TipoBOX.Size = new System.Drawing.Size(377, 24);
-            this.TipoBOX.TabIndex = 13;
+            this.TipoBOX.Size = new System.Drawing.Size(284, 21);
+            this.TipoBOX.TabIndex = 5;
             // 
-            // Cancelar
+            // CancelarBT
             // 
-            this.Cancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cancelar.Location = new System.Drawing.Point(272, 655);
-            this.Cancelar.Name = "Cancelar";
-            this.Cancelar.Size = new System.Drawing.Size(100, 25);
-            this.Cancelar.TabIndex = 14;
-            this.Cancelar.Text = "Cancelar";
-            this.Cancelar.UseVisualStyleBackColor = true;
-            this.Cancelar.Click += new System.EventHandler(this.cancel_Click);
+            this.CancelarBT.Location = new System.Drawing.Point(204, 532);
+            this.CancelarBT.Margin = new System.Windows.Forms.Padding(2);
+            this.CancelarBT.Name = "CancelarBT";
+            this.CancelarBT.Size = new System.Drawing.Size(75, 20);
+            this.CancelarBT.TabIndex = 7;
+            this.CancelarBT.Text = "Cancelar";
+            this.CancelarBT.UseVisualStyleBackColor = true;
+            this.CancelarBT.Click += new System.EventHandler(this.Click);
             // 
             // NewProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 705);
+            this.ClientSize = new System.Drawing.Size(304, 579);
             this.ControlBox = false;
-            this.Controls.Add(this.Cancelar);
+            this.Controls.Add(this.CancelarBT);
             this.Controls.Add(this.TipoBOX);
             this.Controls.Add(this.TipoLable);
             this.Controls.Add(this.DescripLabel);
@@ -202,10 +215,11 @@
             this.Controls.Add(this.CantidadBOX);
             this.Controls.Add(this.NombreBOX);
             this.Controls.Add(this.IDBOX);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(422, 752);
+            this.MaximumSize = new System.Drawing.Size(320, 618);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(422, 752);
+            this.MinimumSize = new System.Drawing.Size(320, 618);
             this.Name = "NewProduct";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -236,6 +250,6 @@
         private System.Windows.Forms.BindingSource typeBindingSource1;
         private System.Windows.Forms.BindingSource typeBindingSource2;
         private System.Windows.Forms.ComboBox TipoBOX;
-        private System.Windows.Forms.Button Cancelar;
+        private System.Windows.Forms.Button CancelarBT;
     }
 }
