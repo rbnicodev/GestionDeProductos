@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace GestionDeProductos
 {
@@ -62,10 +63,10 @@ namespace GestionDeProductos
                         Product product = new Product();
 
                         product.Id = IDBOX.Text;
-                        product.Name = NombreBOX.Text;
+                        product.Name = NombreBOX.Text.Replace(";", "");
                         product.Price = PrecioBOX.Text;
                         product.Quantity = CantidadBOX.Text;
-                        product.Description = DescripBOX.Text;
+                        product.Description = DescripBOX.Text.Replace(";", "");
                         Product.Type tipo = (Product.Type)TipoBOX.SelectedIndex;
                         product.TypeProduct = tipo;
                         if (producto == null)
@@ -112,7 +113,8 @@ namespace GestionDeProductos
 
                 result = MessageBox.Show(message, caption, buttons);
                 rtrn = false;
-            } else if(!int.TryParse(CantidadBOX.Text, out i) || CantidadBOX.Text == "")
+            }
+            else if (!int.TryParse(CantidadBOX.Text, out i) || CantidadBOX.Text == "")
             {
                 string message = "Introduce un valor numérico";
                 string caption = "Cantidad no indicada";
@@ -121,7 +123,8 @@ namespace GestionDeProductos
 
                 result = MessageBox.Show(message, caption, buttons);
                 rtrn = false;
-            } else if(!double.TryParse(PrecioBOX.Text, out d) ||PrecioBOX.Text == "")
+            }
+            else if (!double.TryParse(PrecioBOX.Text, out d) || PrecioBOX.Text == "")
             {
                 string message = "Introduce un valor válido";
                 string caption = "Precio erróneo";

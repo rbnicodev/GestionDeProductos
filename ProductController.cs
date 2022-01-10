@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace GestionDeProductos
 {
@@ -87,20 +88,31 @@ namespace GestionDeProductos
         public static bool HasNext()
         {
             bool HasNext;
-            Product product = Products[index + 1];
-
-            if (product != null)
+            Product product = null;
+            try
+            {
+                product = Products[index];
                 HasNext = true;
-            else
+            }
+            catch (Exception ex)
+            {
                 HasNext = false;
+            }
 
             return HasNext;
         }
 
         public static Product next()
         {
-            Product producto = Products[index];
-            index++;
+            Product producto = null;
+            try
+            {
+                producto = Products[index];
+                index++;
+            } catch(Exception ex)
+            {
+                index = 0;
+            }
             return producto;
         }
 
@@ -169,16 +181,24 @@ namespace GestionDeProductos
             return Products;
         }
 
-        public static Stream ToCsvStream()
+        public static String ToCsvString()
         {
-            Stream result = null;
             String resultString = "";
+            Product producto = null;
 
-            for(i = Products., i )
+            while(HasNext())
+            {
+                producto = next();
 
-
-
-            return result;
+                resultString += producto.Id + "; ";
+                resultString += producto.Name + "; ";
+                resultString += producto.Quantity + "; ";
+                resultString += producto.Price + "; ";
+                resultString += producto.Description + "; ";
+                resultString += ((int)producto.TypeProduct).ToString() + "; ";
+                resultString += "\n";
+            }
+            return resultString;
         }
 
     }

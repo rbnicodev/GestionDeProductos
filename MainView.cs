@@ -129,7 +129,7 @@ namespace GestionDeProductos
             }
             else if (sender == ExportCSV)
             {
-                Stream myStream = ProductController.ToCsvStream();
+                Stream stream;
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
                 saveFileDialog1.Filter = "csv files (*.csv)|*.csv";
@@ -138,9 +138,23 @@ namespace GestionDeProductos
 
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    if ((myStream = saveFileDialog1.OpenFile()) != null)
+                    ProductController.first();
+                    try
                     {
-                        myStream.Close();
+                        //Pass the filepath and filename to the StreamWriter Constructor
+                        StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
+                        //Write a line of text
+                        sw.Write(ProductController.ToCsvString());
+                        Console.WriteLine(ProductController.ToCsvString());
+                        sw.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Exception: " + ex.Message);
+                    }
+                    finally
+                    {
+                        Console.WriteLine("Executing finally block.");
                     }
                 }
             }
