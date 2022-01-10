@@ -10,3 +10,7 @@ C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.
 C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.exe
 C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.pdb
 C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.NewProduct.resources
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\bin\Debug\GestionDeProductos.exe.manifest
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\bin\Debug\GestionDeProductos.application
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.exe.manifest
+C:\Users\ruben\Documents\GitHub\GestionDeProductos\obj\Debug\GestionDeProductos.application

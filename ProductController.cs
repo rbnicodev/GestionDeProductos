@@ -187,7 +187,7 @@ namespace GestionDeProductos
         {
             String resultString = "";
             Product producto = null;
-
+            First();
             while(HasNext())
             {
                 producto = Next();
@@ -197,8 +197,7 @@ namespace GestionDeProductos
                 resultString += producto.Quantity + "; ";
                 resultString += producto.Price + "; ";
                 resultString += producto.Description + "; ";
-                resultString += ((int)producto.TypeProduct).ToString() + "; ";
-                resultString += "\n";
+                resultString += ((int)producto.TypeProduct).ToString() + "\n";
             }
             return resultString;
         }
@@ -210,8 +209,11 @@ namespace GestionDeProductos
             try
             {
                 StreamWriter streamWriter = new StreamWriter(filePath);
+                if(ProductController.ToCsvString().Length == 0)
+                {
+                    throw new Exception();
+                }
                 streamWriter.Write(ProductController.ToCsvString());
-                Console.WriteLine(ProductController.ToCsvString());
                 streamWriter.Close();
                 result = true;
             }
@@ -240,7 +242,12 @@ namespace GestionDeProductos
                 string line = streamReader.ReadLine();
                 while (line != null)
                 {
-                    ProductString = line.Split(';');
+                    ProductString = line.Trim().Split(';');
+                    Console.WriteLine(ProductString.Length);
+                    if (ProductString.Length != 6)
+                    {
+                        throw new Exception();
+                    }
                     ProductFromCSV = new Product();
                     ProductFromCSV.Id = ProductString[0].Trim();
                     ProductFromCSV.Name = ProductString[1].Trim();
@@ -249,15 +256,25 @@ namespace GestionDeProductos
                     ProductFromCSV.Description = ProductString[4].Trim();
                     int.TryParse(ProductString[5].Trim(), out t);
                     ProductFromCSV.TypeProduct = (Product.Type)t;
-                    ProductsFromCSV.Add(ProductFromCSV);
+                    if(ValidateProduct(ProductFromCSV))
+                    {
+                        ProductsFromCSV.Add(ProductFromCSV);
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                     ProductFromCSV = null;
                     line = streamReader.ReadLine();
                     Cont++;
                 }
-                Result = true;
-                Products = ProductsFromCSV;
                 streamReader.Close();
-                Count = Cont;
+                if(Cont > 0)
+                {
+                    Products = ProductsFromCSV;
+                    Result = true;
+                    Count = Cont;
+                }
             } catch(Exception ex)
             {
                 Result = false;
@@ -266,6 +283,42 @@ namespace GestionDeProductos
 
 
             return Result;
+        }
+
+        public static bool ValidateProduct(Product producto)
+        {
+            int i;
+            int t;
+            double d;
+            bool rtrn = true;
+            // Checks the value of the text.
+            if (!int.TryParse(producto.Id, out i) || producto.Id == "")
+            {
+                throw new Exception();
+                rtrn = false;
+            }
+            else if (producto.Name == "")
+            {
+                throw new Exception();
+                rtrn = false;
+            }
+            else if (!int.TryParse(producto.Quantity, out i) || producto.Quantity == "")
+            {
+                throw new Exception();
+                rtrn = false;
+            }
+            else if (!double.TryParse(producto.Price, out d) || producto.Price == "")
+            {
+                throw new Exception();
+                rtrn = false;
+            }
+            else if ((int)producto.TypeProduct < 0 || (int)producto.TypeProduct > 3)
+            {
+                throw new Exception();
+                rtrn = false;
+            }
+
+            return rtrn;
         }
 
     }

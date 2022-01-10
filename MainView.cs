@@ -9,6 +9,7 @@ namespace GestionDeProductos
         public MainView()
         {
             InitializeComponent();
+            this.KeyPress += new KeyPressEventHandler(KeyPressed);
             
         }
 
@@ -33,17 +34,28 @@ namespace GestionDeProductos
                     ReloadTable();
                 } 
 
-            }else if ((sender == Editar || sender == MenuEditar) && TablaDatos.SelectedRows.Count > 0 && TablaDatos.SelectedRows[0].Cells.Count > 0)
+            }else if (sender == Editar || sender == MenuEditar)
             {
-                if (TablaDatos.SelectedRows[0].Cells[0].Value != null)
+                if(TablaDatos.SelectedRows.Count > 0 && TablaDatos.SelectedRows[0].Cells.Count > 0)
                 {
-                    NewProduct ventana = new NewProduct(this, ProductController.Load(TablaDatos.SelectedRows[0].Cells[0].Value.ToString()));
-                    ventana.ShowDialog();
-                    if (ventana.DialogResult == DialogResult.OK)
+                    if (TablaDatos.SelectedRows[0].Cells[0].Value != null)
                     {
-                        ReloadTable();
+                        NewProduct ventana = new NewProduct(this, ProductController.Load(TablaDatos.SelectedRows[0].Cells[0].Value.ToString()));
+                        ventana.ShowDialog();
+                        if (ventana.DialogResult == DialogResult.OK)
+                        {
+                            ReloadTable();
+                        }
                     }
                 }
+                else
+                {
+                    string message = "Selecciona una fila";
+                    string caption = "Error";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
+                }
+                
             }else if ((sender == Eliminar || sender == MenuEliminar))
             {
                 string message = null;
@@ -78,7 +90,7 @@ namespace GestionDeProductos
                     message = "Selecciona una fila";
                     string caption = "Error";
                     MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    MessageBox.Show(message, caption, buttons);
+                    MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
                 }
 
             }
@@ -172,6 +184,14 @@ namespace GestionDeProductos
                 }
             }
         }
+
+        //private void KeyPressed(object sender, KeyPressEventArgs k)
+        //{
+        //    if(k.KeyChar == 5)
+        //    {
+        //        CSV(ExportCSV, null);
+        //    }
+        //}
         
     }
 }
