@@ -52,8 +52,7 @@ namespace GestionDeProductos
             DescripBOX.Text = producto.Description;
             TipoBOX.SelectedIndex = (int)producto.TypeProduct;
         }
-
-        private void Click(object sender, EventArgs e)
+        private void ClickListener(object sender, EventArgs e)
         {
 
                 if (sender == GuardarBT)
@@ -71,11 +70,11 @@ namespace GestionDeProductos
                         product.TypeProduct = tipo;
                         if (producto == null)
                         {
-                            ProductController.save(product);
+                            ProductController.Save(product);
                         }
                         else
                         {
-                            ProductController.update(product);
+                            ProductController.Update(product);
                         }
 
                     this.DialogResult = DialogResult.OK;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -16,10 +15,10 @@ namespace GestionDeProductos
         public void ReloadTable()
         {
             TablaDatos.Rows.Clear();
-            ProductController.first();
+            ProductController.First();
             for(int i = 0; i < ProductController.Count; i++)
             {
-                TablaDatos.Rows.Add(ProductController.loadString(ProductController.next().Id));
+                TablaDatos.Rows.Add(ProductController.LoadString(ProductController.Next().Id));
             }
         }
 
@@ -38,7 +37,7 @@ namespace GestionDeProductos
             {
                 if (TablaDatos.SelectedRows[0].Cells[0].Value != null)
                 {
-                    NewProduct ventana = new NewProduct(this, ProductController.load(TablaDatos.SelectedRows[0].Cells[0].Value.ToString()));
+                    NewProduct ventana = new NewProduct(this, ProductController.Load(TablaDatos.SelectedRows[0].Cells[0].Value.ToString()));
                     ventana.ShowDialog();
                     if (ventana.DialogResult == DialogResult.OK)
                     {
@@ -61,14 +60,14 @@ namespace GestionDeProductos
                         }
                         string caption = "Eliminar";
                         MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                        DialogResult result = MessageBox.Show(message, caption, buttons);
+                        DialogResult result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Warning);
                         if (result == DialogResult.Yes)
                         {
                             foreach (DataGridViewRow row in TablaDatos.SelectedRows)
                             {
                                 if (row.Cells[0].Value != null)
                                 {
-                                    ProductController.delete(row.Cells[0].Value.ToString());
+                                    ProductController.Delete(row.Cells[0].Value.ToString());
                                 }
                             }
                         }
@@ -118,43 +117,57 @@ namespace GestionDeProductos
                 {
                     openFileDialog.InitialDirectory = "c:\\";
                     openFileDialog.Filter = "csv files (*.csv)|*.csv";
-                    openFileDialog.FilterIndex = 2;
-                    openFileDialog.RestoreDirectory = true;
+                    //openFileDialog.FilterIndex = 2;
+                    //openFileDialog.RestoreDirectory = true;
 
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                        string message = "¿Está seguro de querer importar?\nSe perderán los datos actuales";
+                        string caption = "Importar";
+                        
+                        if(MessageBox.Show(message, caption, buttons, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            if (ProductController.ImportCSV(openFileDialog.FileName))
+                            {
+                                buttons = MessageBoxButtons.OK;
+                                message = "Importado con éxito";
+                                caption = "Importar";
+                                MessageBox.Show(message, caption, buttons, MessageBoxIcon.Information);
+                                ReloadTable();
+                            }
+                            else
+                            {
+                                buttons = MessageBoxButtons.OK;
+                                message = "Ha habido un error al importar";
+                                caption = "Importar";
+                                MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
+                            }
+                        }
 
+                        ReloadTable();
                     }
                 }
             }
             else if (sender == ExportCSV)
             {
-                Stream stream;
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "csv files (*.csv)|*.csv";
 
-                saveFileDialog1.Filter = "csv files (*.csv)|*.csv";
-                saveFileDialog1.FilterIndex = 2;
-                saveFileDialog1.RestoreDirectory = true;
-
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ProductController.first();
-                    try
+                    if(ProductController.SaveCSV(saveFileDialog.FileName))
                     {
-                        //Pass the filepath and filename to the StreamWriter Constructor
-                        StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
-                        //Write a line of text
-                        sw.Write(ProductController.ToCsvString());
-                        Console.WriteLine(ProductController.ToCsvString());
-                        sw.Close();
-                    }
-                    catch (Exception ex)
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        string message = "Exportado con éxito";
+                        string caption = "Exportar";
+                        MessageBox.Show(message, caption, buttons, MessageBoxIcon.Information);
+                    } else
                     {
-                        Console.WriteLine("Exception: " + ex.Message);
-                    }
-                    finally
-                    {
-                        Console.WriteLine("Executing finally block.");
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        string message = "Ha habido un error al guardar";
+                        string caption = "Exportar";
+                        MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
                     }
                 }
             }

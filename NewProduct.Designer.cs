@@ -100,7 +100,7 @@
             this.GuardarBT.TabIndex = 6;
             this.GuardarBT.Text = "Guardar";
             this.GuardarBT.UseVisualStyleBackColor = true;
-            this.GuardarBT.Click += new System.EventHandler(this.Click);
+            this.GuardarBT.Click += new System.EventHandler(this.ClickListener);
             // 
             // IDLabel
             // 
@@ -193,7 +193,7 @@
             this.CancelarBT.TabIndex = 7;
             this.CancelarBT.Text = "Cancelar";
             this.CancelarBT.UseVisualStyleBackColor = true;
-            this.CancelarBT.Click += new System.EventHandler(this.Click);
+            this.CancelarBT.Click += new System.EventHandler(this.ClickListener);
             // 
             // NewProduct
             // 
