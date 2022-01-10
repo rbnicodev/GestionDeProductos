@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace GestionDeProductos
 {
@@ -163,6 +161,22 @@ namespace GestionDeProductos
             result[3] = "Precio";
             result[4] = "Descripción";
             result[5] = "Tipo";
+
+            return result;
+        }
+        public static List<Product> getProducts()
+        {
+            return Products;
+        }
+
+        public static Stream ToCsvStream()
+        {
+            Stream result = null;
+            String resultString = "";
+
+            for(i = Products., i )
+
+
 
             return result;
         }

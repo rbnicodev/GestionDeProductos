@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GestionDeProductos
@@ -52,32 +47,36 @@ namespace GestionDeProductos
                 }
             }else if ((sender == Eliminar || sender == MenuEliminar))
             {
+                string message = null;
                 if(TablaDatos.SelectedRows.Count > 0 && TablaDatos.SelectedRows[0].Cells.Count > 0)
                 {
                     if (TablaDatos.SelectedRows[0].Cells[0].Value != null)
                     {
-                        foreach (DataGridViewRow row in TablaDatos.SelectedRows)
+                        if(TablaDatos.SelectedRows.Count == 1)
                         {
-                            if (row.Cells[0].Value != null)
+                            message = "¿Está seguro de que desea eliminar el registro?";
+                        }else
+                        {
+                            message = "¿Está seguro de que desea eliminar los registros?";
+                        }
+                        string caption = "Eliminar";
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                        DialogResult result = MessageBox.Show(message, caption, buttons);
+                        if (result == DialogResult.Yes)
+                        {
+                            foreach (DataGridViewRow row in TablaDatos.SelectedRows)
                             {
-                                string message = "¿Desea eliminar el registro?";
-                                string caption = "Eliminar";
-                                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                                DialogResult result;
-
-                                result = MessageBox.Show(message, caption, buttons);
-                                if (result == DialogResult.Yes)
+                                if (row.Cells[0].Value != null)
                                 {
                                     ProductController.delete(row.Cells[0].Value.ToString());
-                                    ReloadTable();
                                 }
                             }
                         }
-
+                        ReloadTable();
                     }
                 } else
                 {
-                    string message = "Selecciona una fila";
+                    message = "Selecciona una fila";
                     string caption = "Error";
                     MessageBoxButtons buttons = MessageBoxButtons.OK;
                     MessageBox.Show(message, caption, buttons);
@@ -110,5 +109,42 @@ namespace GestionDeProductos
         {
 
         }
+
+        private void CSV(object sender, EventArgs e)
+        {
+            if (sender == ImportCSV)
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.InitialDirectory = "c:\\";
+                    openFileDialog.Filter = "csv files (*.csv)|*.csv";
+                    openFileDialog.FilterIndex = 2;
+                    openFileDialog.RestoreDirectory = true;
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+
+                    }
+                }
+            }
+            else if (sender == ExportCSV)
+            {
+                Stream myStream = ProductController.ToCsvStream();
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter = "csv files (*.csv)|*.csv";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    if ((myStream = saveFileDialog1.OpenFile()) != null)
+                    {
+                        myStream.Close();
+                    }
+                }
+            }
+        }
+        
     }
 }
