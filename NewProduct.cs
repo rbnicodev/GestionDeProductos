@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace GestionDeProductos
 {
     public partial class NewProduct : Form
     {
-        private MainView padre;
         private Product producto;
         public NewProduct()
         {
-            padre = null;
             InitializeComponent();
             TipoBOX.Items.Add(Product.Type.MONITOR.ToString());
             TipoBOX.Items.Add(Product.Type.TECLADO.ToString());
@@ -27,7 +17,6 @@ namespace GestionDeProductos
 
         public NewProduct(MainView padre)
         {
-            this.padre = padre;
             InitializeComponent();
             TipoBOX.Items.Add(Product.Type.MONITOR.ToString());
             TipoBOX.Items.Add(Product.Type.TECLADO.ToString());
@@ -36,7 +25,6 @@ namespace GestionDeProductos
         }
         public NewProduct(MainView padre, Product producto)
         {
-            this.padre = padre;
             this.producto = producto;
             InitializeComponent();
             TipoBOX.Items.Add(Product.Type.MONITOR.ToString());
