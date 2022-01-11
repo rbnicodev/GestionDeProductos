@@ -98,9 +98,7 @@ namespace GestionDeProductos
                 string message = "Introduce un valor numérico";
                 string caption = "ID erróneo";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                result = MessageBox.Show(message, caption, buttons);
+                MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
                 rtrn = false;
             }
             else if (NombreBOX.Text == "")
@@ -108,9 +106,14 @@ namespace GestionDeProductos
                 string message = "Introduce un nombre de producto";
                 string caption = "Nombre no indicado";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                result = MessageBox.Show(message, caption, buttons);
+                MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
+                rtrn = false;
+            } else if (NombreBOX.Text.Contains(";"))
+            {
+                string message = "No se puede introducir ';'";
+                string caption = "Error";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
                 rtrn = false;
             }
             else if (!int.TryParse(CantidadBOX.Text, out i) || CantidadBOX.Text == "")
@@ -118,9 +121,7 @@ namespace GestionDeProductos
                 string message = "Introduce un valor numérico";
                 string caption = "Cantidad no indicada";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                result = MessageBox.Show(message, caption, buttons);
+                MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
                 rtrn = false;
             }
             else if (!double.TryParse(PrecioBOX.Text, out d) || PrecioBOX.Text == "")
@@ -128,9 +129,15 @@ namespace GestionDeProductos
                 string message = "Introduce un valor válido";
                 string caption = "Precio erróneo";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                result = MessageBox.Show(message, caption, buttons);
+                MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
+                rtrn = false;
+            }
+            else if (DescripBOX.Text.Contains(";"))
+            {
+                string message = "No se puede introducir ';'";
+                string caption = "Error";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
                 rtrn = false;
             }
             else if (TipoBOX.SelectedIndex == -1)
@@ -138,9 +145,7 @@ namespace GestionDeProductos
                 string message = "Introduce un tipo de producto";
                 string caption = "Error detectado";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                result = MessageBox.Show(message, caption, buttons);
+                MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
                 rtrn = false;
             }
 

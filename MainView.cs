@@ -9,7 +9,7 @@ namespace GestionDeProductos
         public MainView()
         {
             InitializeComponent();
-            this.KeyPress += new KeyPressEventHandler(KeyPressed);
+            //this.KeyPress += new KeyPressEventHandler(KeyPressed);
             
         }
 
