@@ -131,7 +131,6 @@ namespace GestionDeProductos
             if(Products.Count > 0)
             { producto = Products[Index]; }
             return producto;
-            
         }
 
         public static String[] LoadString(String id)
@@ -220,10 +219,6 @@ namespace GestionDeProductos
             catch (Exception ex)
             {
                 Console.WriteLine("Exception: " + ex.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Executing finally block.");
             }
             return result;
         }
