@@ -127,7 +127,6 @@ namespace GestionDeProductos
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog()) //declaration of the file selection dialog, which releases the resource as soon as the statement completes
                 {
-                    openFileDialog.InitialDirectory = "c:\\";
                     openFileDialog.Filter = "csv files (*.csv)|*.csv";
 
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
