@@ -254,17 +254,17 @@ namespace GestionDeProductos
             List<Product> ProductsFromCSV = new List<Product>();
             bool Result = false;
             string[] ProductString;
-            int t;
+            string line;
             int Cont = 0;
+            int t = 0;
 
             try
             {
                 StreamReader streamReader = new StreamReader(filePath);
-                string line = streamReader.ReadLine();
+                 line = streamReader.ReadLine();
                 while (line != null)
                 {
                     ProductString = line.Trim().Split(';');
-                    Console.WriteLine(ProductString.Length);
                     if (ProductString.Length != 6)
                     {
                         throw new Exception();
@@ -275,7 +275,7 @@ namespace GestionDeProductos
                     ProductFromCSV.Quantity = ProductString[2].Trim();
                     ProductFromCSV.Price = ProductString[3].Trim();
                     ProductFromCSV.Description = ProductString[4].Trim();
-                    int.TryParse(ProductString[5].Trim(), out t);
+                    t = int.Parse(ProductString[5].Trim());
                     ProductFromCSV.TypeProduct = (Product.Type)t;
                     if(ValidateProduct(ProductFromCSV))
                     {
