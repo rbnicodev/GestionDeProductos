@@ -6,6 +6,13 @@ namespace GestionDeProductos
     public partial class NewProduct : Form
     {
         private Product producto;
+        
+        private TextBox getIDBox(){ return IDBOX; }
+        private TextBox getNameBox(){ return NombreBOX; }
+        private TextBox getQuantityBox(){ return CantidadBOX; }
+        private TextBox getPriceBox(){ return PrecioBOX; }
+        private TextBox getDescriptionBox() {  return DescripBOX; }
+        private ComboBox getTypeBox() { return TipoBOX; }
         public NewProduct()
         {
             InitializeComponent();
@@ -15,15 +22,7 @@ namespace GestionDeProductos
             TipoBOX.Items.Add(Product.Type.PLACA_BASE.ToString());
         }
 
-        public NewProduct(MainView padre)
-        {
-            InitializeComponent();
-            TipoBOX.Items.Add(Product.Type.MONITOR.ToString());
-            TipoBOX.Items.Add(Product.Type.TECLADO.ToString());
-            TipoBOX.Items.Add(Product.Type.RATON.ToString());
-            TipoBOX.Items.Add(Product.Type.PLACA_BASE.ToString());
-        }
-        public NewProduct(MainView padre, Product producto)
+        public NewProduct(Product producto)
         {
             this.producto = producto;
             InitializeComponent();

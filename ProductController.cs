@@ -72,6 +72,12 @@ namespace GestionDeProductos
 
             return deleted;
         }
+        public static void DeleteAll()
+        {
+            Products.Clear();
+            Count = 0;
+            Index = 0;
+        }
 
         public static Product Load(String id)
         {
@@ -161,6 +167,26 @@ namespace GestionDeProductos
                 result[i, 4] = product.Description;
                 result[i, 5] = product.TypeProduct.ToString();
                 i++;
+            }
+            return result;
+        }
+        public static String[,] LoadStringsByType(int type)
+        {
+            String[,] result = new string[Products.Count, COLUMNS];
+            int i = 0;
+
+            foreach (Product product in Products)
+            {
+                if ((int)product.TypeProduct == type)
+                {
+                    result[i, 0] = product.Id;
+                    result[i, 1] = product.Name;
+                    result[i, 2] = product.Quantity;
+                    result[i, 3] = product.Price;
+                    result[i, 4] = product.Description;
+                    result[i, 5] = product.TypeProduct.ToString();
+                    i++;
+                }
             }
             return result;
         }
@@ -266,9 +292,12 @@ namespace GestionDeProductos
                 streamReader.Close();
                 if(Cont > 0)
                 {
-                    Products = ProductsFromCSV;
+                    DeleteAll();
+                    foreach(Product p in ProductsFromCSV)
+                    {
+                        Save(p);
+                    }
                     Result = true;
-                    Count = Cont;
                 }
             } catch(Exception ex)
             {
@@ -285,35 +314,35 @@ namespace GestionDeProductos
             int i;
             int t;
             double d;
-            bool rtrn = true;
+            bool result = true;
             // Checks the value of the text.
             if (!int.TryParse(producto.Id, out i) || producto.Id == "")
             {
+                result = false;
                 throw new Exception();
-                rtrn = false;
             }
             else if (producto.Name == "")
             {
+                result = false;
                 throw new Exception();
-                rtrn = false;
             }
             else if (!int.TryParse(producto.Quantity, out i) || producto.Quantity == "")
             {
+                result = false;
                 throw new Exception();
-                rtrn = false;
             }
             else if (!double.TryParse(producto.Price, out d) || producto.Price == "")
             {
+                result = false;
                 throw new Exception();
-                rtrn = false;
             }
             else if ((int)producto.TypeProduct < 0 || (int)producto.TypeProduct > 3)
             {
+                result = false;
                 throw new Exception();
-                rtrn = false;
             }
 
-            return rtrn;
+            return result;
         }
 
     }
