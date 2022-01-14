@@ -74,14 +74,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainViewController.cs" />
+    <Compile Include="MainView.Controller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewProduct.Controller.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="NewProduct.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NewProduct.Designer.cs">
       <DependentUpon>NewProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewProductController.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductController.cs" />
     <Compile Include="MainView.cs">

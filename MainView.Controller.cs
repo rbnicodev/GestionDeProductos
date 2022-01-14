@@ -1,12 +1,33 @@
-﻿using System.Windows.Forms;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace GestionDeProductos
 {
-    internal class MainViewController
+    partial class MainView
     {
-
-        public static void ReloadTable(DataGridView DataTable)
+        public void SampleData() //Function to load sample data
+        {
+            //It first asks the user if he wants to import the sample data
+            if (MessageBox.Show("¿Desea importar datos de ejemplo?", "Importar Datos Ejemplo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if(ProductController.ImportCSV("sample_data.csv") == true)
+                {
+                    ReloadTable();
+                    MessageBox.Show("Importados con éxito", "Importar Datos Ejemplo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Parece que ha habido un error", "Error al importar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
+        }
+        public void ReloadTable() //Reload the table view
         {
             DataTable.Rows.Clear();
             ProductController.First();  //Sets the ProductController index to 0
@@ -15,40 +36,44 @@ namespace GestionDeProductos
                 DataTable.Rows.Add(ProductController.LoadString(ProductController.Next().Id));
             }
         }
-        public static void ReloadTableFiltered(DataGridView DataTable, int type)
+        private void Filter(object sender, EventArgs e)
         {
-            type--;
-            if(type >= 0)
+            int type = ComboFilter.SelectedIndex;
+            type--; //This is because by adding the "Alls" option, the indexes have been increased by one.
+            if (type >= 0) //If type has been chosen
             {
                 DataTable.Rows.Clear();
                 foreach (Product p in ProductController.getProducts())
                 {
-                    if ((int)p.TypeProduct == type)
+                    if ((int)p.TypeProduct == type) //It only adds it to the view if the type matches
                     {
                         DataTable.Rows.Add(ProductController.LoadString(p.Id));
                     }
                 }
-            } else
+            }
+            else //If "Alls" has been chosen
             {
-                ReloadTable(DataTable);
+                ReloadTable();
             }
         }
-        public static void Create(DataGridView DataTable)
+        public void Create(object sender, EventArgs e) //Function used in the ClickListener of the "new" button
         {
-            if (NewProductController.GetNewProductView().DialogResult == DialogResult.OK)
+            NewProduct newProduct = new NewProduct();
+            newProduct.ShowDialog();
+            if (newProduct.DialogResult == DialogResult.OK)
             {
-                ReloadTable(DataTable);
+                ReloadTable();
             }
         }
-        public static void Edit(DataGridView DataTable)
+        public void Edit(object sender, EventArgs e)//Function used in the ClickListener of the "edit" button
         {
             if (DataTable.SelectedRows.Count > 0 && DataTable.SelectedRows[0].Cells.Count > 0) //If the number of selected rows is greater than 0, and the number of selected cells in the first row is also greater than 0
             {
                 if (DataTable.SelectedRows[0].Cells[0].Value != null) //If the first cell of the first selected row has a value other than null
                 {
-                    if (NewProductController.GetNewProductView(ProductController.Load(DataTable.SelectedRows[0].Cells[0].Value.ToString())).DialogResult == DialogResult.OK)
+                    if (new NewProduct(ProductController.Load(DataTable.SelectedRows[0].Cells[0].Value.ToString())).ShowDialog() == DialogResult.OK)
                     {
-                        ReloadTable(DataTable);
+                        ReloadTable();
                     }
                 }
             }
@@ -60,7 +85,7 @@ namespace GestionDeProductos
                 MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
             }
         }
-        public static void Delete(DataGridView DataTable)
+        public void Delete(object sender, EventArgs e)//Function used in the ClickListener of the "delete" button
         {
             string message = null;
             if (DataTable.SelectedRows.Count > 0 && DataTable.SelectedRows[0].Cells.Count > 0) //If the number of selected rows is greater than 0, and the number of selected cells in the first row is also greater than 0
@@ -88,11 +113,11 @@ namespace GestionDeProductos
                             }
                         }
                     }
-                    ReloadTable(DataTable);
+                    ReloadTable();
                 }
             }
         }
-        public static void ImportCSV(DataGridView DataTable)
+        private void ImportFromCSV(object sender, EventArgs e) //Function that opens the dialog to select file, and calls ProductController to import it
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = "c:\\";
@@ -115,7 +140,7 @@ namespace GestionDeProductos
                         message = "Importado con éxito";
                         caption = "Importar";
                         MessageBox.Show(message, caption, buttons, MessageBoxIcon.Information);
-                        ReloadTable(DataTable);
+                        ReloadTable();
                     }
                     else //If there is any error importing the file
                     {
@@ -127,11 +152,11 @@ namespace GestionDeProductos
                     }
                 }
 
-                MainViewController.ReloadTable(DataTable);
+                ReloadTable();
             }
         }
 
-        public static void ExportCSV()
+        private void ExportToCSV(object sender, EventArgs e) //Function that opens the dialog to select the destination of the file, and calls ProductController to export it
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "csv files (*.csv)|*.csv";
@@ -153,6 +178,26 @@ namespace GestionDeProductos
                     MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error);
                 }
             }
+        }
+        private void SortId(object sender, EventArgs e)
+        {
+            DataTable.Sort(DataTable.Columns["ID"], ListSortDirection.Ascending);
+        }
+        private void SortName(object sender, EventArgs e)
+        {
+            DataTable.Sort(DataTable.Columns["Name"], ListSortDirection.Ascending);
+        }
+        private void SortQuantity(object sender, EventArgs e)
+        {
+            DataTable.Sort(DataTable.Columns["Cantidad"], ListSortDirection.Ascending);
+        }
+        private void SortPrice(object sender, EventArgs e)
+        {
+            DataTable.Sort(DataTable.Columns["Precio"], ListSortDirection.Ascending);
+        }
+        private void SortType(object sender, EventArgs e)
+        {
+            DataTable.Sort(DataTable.Columns["Tipo"], ListSortDirection.Ascending);
         }
     }
 }
