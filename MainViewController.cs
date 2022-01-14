@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 
 namespace GestionDeProductos
@@ -40,9 +35,7 @@ namespace GestionDeProductos
         }
         public static void Create(DataGridView DataTable)
         {
-            NewProduct ventana = new NewProduct();
-            ventana.ShowDialog();
-            if (ventana.DialogResult == DialogResult.OK)
+            if (NewProductController.GetNewProductView().DialogResult == DialogResult.OK)
             {
                 ReloadTable(DataTable);
             }
@@ -53,9 +46,7 @@ namespace GestionDeProductos
             {
                 if (DataTable.SelectedRows[0].Cells[0].Value != null) //If the first cell of the first selected row has a value other than null
                 {
-                    NewProduct ventana = new NewProduct(ProductController.Load(DataTable.SelectedRows[0].Cells[0].Value.ToString()));
-                    ventana.ShowDialog();
-                    if (ventana.DialogResult == DialogResult.OK)
+                    if (NewProductController.GetNewProductView(ProductController.Load(DataTable.SelectedRows[0].Cells[0].Value.ToString())).DialogResult == DialogResult.OK)
                     {
                         ReloadTable(DataTable);
                     }
